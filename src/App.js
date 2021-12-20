@@ -11,7 +11,7 @@ class App extends Component {
 
     this.state = {
       user:{},
-      selectedConsultantType: '',
+      selectedConsultantType: 'gp',
       availableSlots: [],
     };
   }
@@ -51,6 +51,11 @@ class App extends Component {
         }
       }
     }
+    console.log(`This is available slots`)
+    console.log(this.state.availableSlots)
+    console.log(`This is this`)
+    console.log(this)
+    
 
     return (
       <div className="app">
@@ -99,7 +104,7 @@ class App extends Component {
                   this.setState({ selectedDateAndTime: slot.dateTime });
                 }}
               >
-                {slot.dateTime}
+                {slot.time}
               </li>
             ))}
           </div>
