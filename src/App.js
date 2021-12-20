@@ -10,8 +10,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      userId: 1,
-      selectedAppointmentType: 'gp',
+      user:{},
+      selectedConsultantType: '',
       availableSlots: [],
     };
   }
@@ -25,10 +25,18 @@ class App extends Component {
       .catch(() => {
         // TODO: Handle error here
       });
+    fetch(`${API_ENDPOINT}/users/1`)
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({ user: json });
+      })
+      .catch(() => {
+        // TODO: Handle error here
+      });
   }
 
   onClick() {
-    this.setState({ selectedAppointmentType: 'gp' });
+    this.setState({ selectedConsultantType: 'gp' });
   }
 
   render() {
@@ -37,7 +45,7 @@ class App extends Component {
     for (let i = 0; i < this.state.availableSlots.length; i++) {
       for (let j = 0; j < this.state.availableSlots[i]['consultantType'].length; j++) {
         if (
-          this.state.availableSlots[i]['consultantType'][j] === this.state.selectedAppointmentType
+          this.state.availableSlots[i]['consultantType'][j] === this.state.selectedConsultantType
         ) {
           slots.push(this.state.availableSlots[i]);
         }
@@ -46,18 +54,21 @@ class App extends Component {
 
     return (
       <div className="app">
-        <h2 className="h6">New appointment</h2>
         <div className="app-header">
           <img src={logo} className="app-logo" alt="Babylon Health" />
         </div>
+        <h2 className="h6">New Consultant</h2>
+        <img src={this.state.user.avatar} />
+        {this.state.user.firstName} {this.state.user.lastName}
+        <h3>Consultant Type</h3>
         <div style={{ maxWidth: 600, margin: '24px auto' }}>
-          <div className="button" id="GP-button">
+          <div className="button">
             GP
           </div>
           <div
             className="button"
             onClick={(e) => {
-              this.setState({ selectedAppointmentType: 'Therapist' });
+              this.setState({ selectedConsultantType: 'Therapist' });
             }}
           >
             Therapist
@@ -65,7 +76,7 @@ class App extends Component {
           <div
             className="button"
             onClick={(e) => {
-              this.setState({ selectedAppointmentType: 'Physio' });
+              this.setState({ selectedConsultantType: 'Physio' });
             }}
           >
             Physio
@@ -73,26 +84,27 @@ class App extends Component {
           <div
             className="button"
             onClick={(e) => {
-              this.setState({ selectedAppointmentType: 'specialist' });
+              this.setState({ selectedConsultantType: 'specialist' });
             }}
           >
             Specialist
           </div>
           <div>
-            <strong>Appointments</strong>
+            <h3>Date and Time</h3>
             {slots.map((slot) => (
               <li
-                className="appointment-button"
+                key={slot.id}
+                className="Consultant-button"
                 onClick={() => {
-                  this.setState({ selectedAppointment: slot });
+                  this.setState({ selectedDateAndTime: slot.dateTime });
                 }}
               >
-                {slot.time}
+                {slot.dateTime}
               </li>
             ))}
           </div>
           <div>
-            <strong>Notes</strong>
+            <h3>Notes</h3>
             <textarea />
           </div>
           <div>
@@ -102,7 +114,7 @@ class App extends Component {
                 /* TODO: submit the data */
               }}
             >
-              Book appointment
+              Book Consultant
             </div>
           </div>
         </div>
