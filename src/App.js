@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import ScrollContainer from 'react-indiana-drag-scroll';
 
 import logo from './logo.png';
 import { API_ENDPOINT } from './config';
@@ -149,7 +150,7 @@ class App extends Component {
 
     return (
       <div className="app">
-        <div style={{ maxWidth: 600, margin: '24px auto' }}>
+        <div style={{ maxWidth: 600, margin: '24px auto', padding: '0 1em' }}>
           <div className="app-header">
             <img src={logo} className="app-logo" alt="Babylon Health" />
           </div>
@@ -162,22 +163,26 @@ class App extends Component {
           <h3>
             Consultant Type <span id="consultantError">Please select a consultant type</span>
           </h3>
-          {consultantTypes.map((consultantType) => {
-            return (
-              <div
-                key={consultantType}
-                // could add selected className conditionally here based on this.state.selectedConsultantType but there's a delay because it has to wait for availableSlots to fetch, because buttons are dynamic
-                className={`button ${
-                  this.state.selectedConsultantType === consultantType && 'selected'
-                }`}
-                // className="button"
-                // this is one method. another is binding function in constructor. another is putting setState directly in here.
-                onClick={(e) => this.handleSelectConsultantType(e)}
-              >
-                {consultantType}
-              </div>
-            );
-          })}
+          <div className="fade"></div>
+
+          <ScrollContainer className="optionsContainer">
+            {consultantTypes.map((consultantType) => {
+              return (
+                <div
+                  key={consultantType}
+                  // could add selected className conditionally here based on this.state.selectedConsultantType but there's a delay because it has to wait for availableSlots to fetch, because buttons are dynamic
+                  className={`button ${
+                    this.state.selectedConsultantType === consultantType && 'selected'
+                  }`}
+                  // className="button"
+                  // this is one method. another is binding function in constructor. another is putting setState directly in here.
+                  onClick={(e) => this.handleSelectConsultantType(e)}
+                >
+                  {consultantType}
+                </div>
+              );
+            })}
+          </ScrollContainer>
 
           <div>
             <h3>
@@ -187,23 +192,26 @@ class App extends Component {
               return (
                 <div key={date}>
                   <div className="date"> {moment(date).format('MMM D[:]')}</div>
+                  <div className="fade"></div>
 
-                  {slots.map(
-                    (slot, index) =>
-                      slot.time !== slots[index - 1]?.time && (
-                        <li
-                          key={slot.id}
-                          className={`button ${
-                            this.state.selectedDateTime === slot.time && 'selected'
-                          }`}
-                          onClick={() => {
-                            this.setState({ selectedDateTime: slot.time });
-                          }}
-                        >
-                          {moment(slot.time).format('hh:mm')}
-                        </li>
-                      ),
-                  )}
+                  <ScrollContainer className="optionsContainer">
+                    {slots.map(
+                      (slot, index) =>
+                        slot.time !== slots[index - 1]?.time && (
+                          <li
+                            key={slot.id}
+                            className={`button ${
+                              this.state.selectedDateTime === slot.time && 'selected'
+                            }`}
+                            onClick={() => {
+                              this.setState({ selectedDateTime: slot.time });
+                            }}
+                          >
+                            {moment(slot.time).format('hh:mm a')}
+                          </li>
+                        ),
+                    )}
+                  </ScrollContainer>
                 </div>
               );
             })}
@@ -211,18 +219,21 @@ class App extends Component {
           <div>
             <h3>
               Appointment Type <span id="appointmentError">Please select an appointment type</span>
-            </h3>
-            {appointmentTypes.map((appointmentType) => (
-              <div
-                key={appointmentType}
-                className={`button ${
-                  this.state.selectedAppointmentType === appointmentType && 'selected'
-                }`}
-                onClick={(e) => this.setState({ selectedAppointmentType: appointmentType })}
-              >
-                {appointmentType}
-              </div>
-            ))}
+            </h3>{' '}
+            <div className="fade"></div>
+            <ScrollContainer className="optionsContainer">
+              {appointmentTypes.map((appointmentType) => (
+                <div
+                  key={appointmentType}
+                  className={`button ${
+                    this.state.selectedAppointmentType === appointmentType && 'selected'
+                  }`}
+                  onClick={(e) => this.setState({ selectedAppointmentType: appointmentType })}
+                >
+                  {appointmentType}
+                </div>
+              ))}{' '}
+            </ScrollContainer>
           </div>
           <div>
             <h3>Notes</h3>
