@@ -16,6 +16,7 @@ class App extends Component {
       selectedConsultantType: 'gp',
       availableSlots: [],
       selectedSlotID: null,
+      selectedAppointmentType: ''
     };
     // this.handleSelectConsultantType = this.handleSelectConsultantType.bind(this);
   }
@@ -85,14 +86,14 @@ class App extends Component {
 
     return (
       <div className="app">
+        <div style={{ maxWidth: 600, margin: '24px auto' }}>
         <div className="app-header">
           <img src={logo} className="app-logo" alt="Babylon Health" />
         </div>
-        <h2 className="h6">New Consultant</h2>
+        <h2 className="h6">New Appointment</h2>
         <img src={this.state.user.avatar} />
         {this.state.user.firstName} {this.state.user.lastName}
         <h3>Consultant Type</h3>
-        <div style={{ maxWidth: 600, margin: '24px auto' }}>
           {consultantTypes.map((consultantType) => {
             return (
               <div
@@ -117,7 +118,8 @@ class App extends Component {
                 <div key={date}>
                   <div className="date"> {moment(date).format('MMM D[:]')}</div>
 
-                  {slots.map((slot) => (
+                  {slots.map((slot,index) => (
+                    slot.time!==slots[index-1]?.time&&
                     <li
                       key={slot.id}
                       className={`button ${this.state.selectedSlotID === slot.id && 'selected'}`}
