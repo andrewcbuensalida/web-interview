@@ -56,13 +56,14 @@ class App extends Component {
         }
       }
     }
+
     let slotsByDate = {};
     slots.forEach((slot) => {
       if (slotsByDate[slot.time.slice(0, -14)]) {
-        slotsByDate[slot.time.slice(0, -14)].push(slot.time.slice(-13, -8));
+        slotsByDate[slot.time.slice(0, -14)].push(slot);
       } else {
         slotsByDate[slot.time.slice(0, -14)] = [];
-        slotsByDate[slot.time.slice(0, -14)].push(slot.time.slice(-13, -8));
+        slotsByDate[slot.time.slice(0, -14)].push(slot);
       }
     });
     console.log(`This is slotsByDate`);
@@ -105,20 +106,21 @@ class App extends Component {
 
           <div>
             <h3>Date and Time</h3>
-            {Object.entries(slotsByDate).map(([date, times]) => {
+            {Object.entries(slotsByDate).map(([date, slots]) => {
               return (
                 <div key={date}>
+
                   <div className="date"> {moment(date).format('MMM D[:]')}</div>
 
-                  {times.map((time, index) => (
+                  {slots.map((slot) => (
                     <li
-                      key={time}
+                      key={slot.id}
                       className="button"
                       onClick={() => {
-                        this.setState({ selectedDateAndTime: time });
+                        this.setState({ selectedDateAndTime: slot.time });
                       }}
                     >
-                      {time}
+                      {moment(slot.time).format('hh:mm')}
                     </li>
                   ))}
                 </div>
