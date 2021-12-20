@@ -8,16 +8,26 @@
 }
 
 .button {
+  cursor: pointer;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  text-transform: capitalize;
   padding: 12px;
-  background-color: #653ee3;
-  color: #dfdfdf;
+  border-radius: 25%/50%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dfdfdf;
+  color: #333f52;
   width: calc(25% - 12px);
   height: 42px;
   margin-right: 12px;
   display: inline-block;
   text-align: center;
+}
+
+.button.selected {
+  background-color: #58bfa9;
+  color: white;
 }
 
 h2.h6 {

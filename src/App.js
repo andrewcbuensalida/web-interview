@@ -4,16 +4,18 @@ import logo from './logo.png';
 import { API_ENDPOINT } from './config';
 
 import './App.scss';
+import { node } from 'prop-types';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user:{},
+      user: {},
       selectedConsultantType: 'gp',
       availableSlots: [],
     };
+    // this.handleSelectConsultantType = this.handleSelectConsultantType.bind(this);
   }
 
   componentDidMount() {
@@ -35,8 +37,9 @@ class App extends Component {
       });
   }
 
-  onClick() {
-    this.setState({ selectedConsultantType: 'gp' });
+  // second method to update selectedConsultantType
+  handleSelectConsultantType(e) {
+    this.setState({ selectedConsultantType: e.target.innerText.toLowerCase() });
   }
 
   render() {
@@ -51,11 +54,14 @@ class App extends Component {
         }
       }
     }
-    console.log(`This is available slots`)
-    console.log(this.state.availableSlots)
-    console.log(`This is this`)
-    console.log(this)
-    
+
+    //dynamically display cosultant type buttons
+    let consultantTypes = [];
+    this.state.availableSlots.forEach((slot) => {
+      slot.consultantType.forEach((consultantType) => {
+        if (!consultantTypes.includes(consultantType)) consultantTypes.push(consultantType);
+      });
+    });
 
     return (
       <div className="app">
@@ -67,33 +73,25 @@ class App extends Component {
         {this.state.user.firstName} {this.state.user.lastName}
         <h3>Consultant Type</h3>
         <div style={{ maxWidth: 600, margin: '24px auto' }}>
-          <div className="button">
-            GP
-          </div>
-          <div
-            className="button"
-            onClick={(e) => {
-              this.setState({ selectedConsultantType: 'Therapist' });
-            }}
-          >
-            Therapist
-          </div>
-          <div
-            className="button"
-            onClick={(e) => {
-              this.setState({ selectedConsultantType: 'Physio' });
-            }}
-          >
-            Physio
-          </div>
-          <div
-            className="button"
-            onClick={(e) => {
-              this.setState({ selectedConsultantType: 'specialist' });
-            }}
-          >
-            Specialist
-          </div>
+          {consultantTypes.map((consultantType) => {
+            console.log(this.selectedConsultantType);
+
+            return (
+              <div
+                key={consultantType}
+                // could add selected className conditionally here based on this.state.selectedConsultantType but there's a delay because it has to wait for availableSlots to fetch, because buttons are dynamic
+                className={`button ${
+                  this.state.selectedConsultantType === consultantType && 'selected'
+                }`}
+                // className="button"
+                // this is one method. another is binding function in constructor. another is putting setState directly in here.
+                onClick={(e) => this.handleSelectConsultantType(e)}
+              >
+                {consultantType}
+              </div>
+            );
+          })}
+
           <div>
             <h3>Date and Time</h3>
             {slots.map((slot) => (

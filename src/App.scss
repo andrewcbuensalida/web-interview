@@ -11,15 +11,24 @@
 }
 
 .button {
+  cursor: pointer;
   box-sizing: border-box;
+  text-transform: capitalize;
   padding: 12px;
-  background-color: $primary-dark;
-  color: $secondary-light;
+  border-radius: 25%/50%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $light-grey;
+  color: $secondary-extra-dark;
   width: calc(25% - 12px);
   height: 42px;
   margin-right: 12px;
   display: inline-block;
   text-align: center;
+  &.selected {
+    background-color: $positive;
+    color: white;
+  }
 }
 
 h2 {
