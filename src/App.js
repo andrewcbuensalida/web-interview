@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 import logo from './logo.png';
 import { API_ENDPOINT } from './config';
@@ -14,6 +15,7 @@ class App extends Component {
       user: {},
       selectedConsultantType: 'gp',
       availableSlots: [],
+      selectedDateAndTime: null,
     };
     // this.handleSelectConsultantType = this.handleSelectConsultantType.bind(this);
   }
@@ -54,6 +56,17 @@ class App extends Component {
         }
       }
     }
+    let slotsByDate = {};
+    slots.forEach((slot) => {
+      if (slotsByDate[slot.time.slice(0, -14)]) {
+        slotsByDate[slot.time.slice(0, -14)].push(slot.time.slice(-13, -8));
+      } else {
+        slotsByDate[slot.time.slice(0, -14)] = [];
+        slotsByDate[slot.time.slice(0, -14)].push(slot.time.slice(-13, -8));
+      }
+    });
+    console.log(`This is slotsByDate`);
+    console.log(slotsByDate);
 
     //dynamically display cosultant type buttons
     let consultantTypes = [];
@@ -74,8 +87,6 @@ class App extends Component {
         <h3>Consultant Type</h3>
         <div style={{ maxWidth: 600, margin: '24px auto' }}>
           {consultantTypes.map((consultantType) => {
-            console.log(this.selectedConsultantType);
-
             return (
               <div
                 key={consultantType}
@@ -94,17 +105,25 @@ class App extends Component {
 
           <div>
             <h3>Date and Time</h3>
-            {slots.map((slot) => (
-              <li
-                key={slot.id}
-                className="Consultant-button"
-                onClick={() => {
-                  this.setState({ selectedDateAndTime: slot.dateTime });
-                }}
-              >
-                {slot.time}
-              </li>
-            ))}
+            {Object.entries(slotsByDate).map(([date, times]) => {
+              return (
+                <div key={date}>
+                  <div className="date"> {moment(date).format('MMM D[:]')}</div>
+
+                  {times.map((time, index) => (
+                    <li
+                      key={time}
+                      className="button"
+                      onClick={() => {
+                        this.setState({ selectedDateAndTime: time });
+                      }}
+                    >
+                      {time}
+                    </li>
+                  ))}
+                </div>
+              );
+            })}
           </div>
           <div>
             <h3>Notes</h3>

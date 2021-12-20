@@ -13,7 +13,7 @@
           box-sizing: border-box;
   text-transform: capitalize;
   padding: 12px;
-  border-radius: 25%/50%;
+  border-radius: 100rem;
   border-style: solid;
   border-width: 1px;
   border-color: #dfdfdf;
@@ -23,6 +23,7 @@
   margin-right: 12px;
   display: inline-block;
   text-align: center;
+  margin-bottom: 5px;
 }
 
 .button.selected {
