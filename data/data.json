@@ -212,16 +212,44 @@
       "dateTime": "2019-08-30T20:21:30.000Z"
     },
     {
-      "hello": "hi",
-      "id": 2
-    },
-    {
       "notes": "Feeling powerful",
       "userId": 1,
       "consultantType": "gp",
       "appointmentType": "video",
       "dateTime": "2019-09-30T19:26:30.000Z",
       "id": 3
+    },
+    {
+      "notes": "Muscles are healed",
+      "userId": 1,
+      "consultantType": "specialist",
+      "appointmentType": "audio",
+      "dateTime": "2019-11-27T14:16:30.000Z",
+      "id": 4
+    },
+    {
+      "notes": "Sense of smell is extraordinary\n",
+      "userId": 1,
+      "consultantType": "therapist",
+      "appointmentType": "audio",
+      "dateTime": "2019-11-16T16:18:30.000Z",
+      "id": 5
+    },
+    {
+      "notes": "Cool",
+      "userId": 1,
+      "consultantType": "gp",
+      "appointmentType": "video appointment",
+      "dateTime": "2019-11-27T10:11:00.000Z",
+      "id": 6
+    },
+    {
+      "notes": "",
+      "userId": 1,
+      "consultantType": "gp appointment",
+      "appointmentType": "video",
+      "dateTime": "",
+      "id": 7
     }
   ]
 }
