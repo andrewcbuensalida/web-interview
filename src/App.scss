@@ -2,12 +2,21 @@
 
 .app-header {
   padding: $gutter-size--large;
+  text-align: center;
 
   img {
     max-height: 33px;
   }
-
   border-bottom: $border-standard;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  img {
+    max-height: 75px;
+    margin-right: 1em;
+  }
 }
 
 .button {
@@ -15,7 +24,7 @@
   box-sizing: border-box;
   text-transform: capitalize;
   padding: 12px;
-  border-radius:100rem;
+  border-radius: 100rem;
   border-style: solid;
   border-width: 1px;
   border-color: $light-grey;
@@ -32,19 +41,12 @@
   }
 }
 
-h2 {
-  &.h6 {
-    font-size: 24px;
-  }
-}
-
-.date{
+.date {
   margin-bottom: 5px;
-
 }
 
-textarea{
-  min-width:90%;
+textarea {
+  min-width: 90%;
   min-height: 150px;
   border-color: $light-grey;
 }

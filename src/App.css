@@ -1,10 +1,25 @@
 .app-header {
   padding: 8px;
+  text-align: center;
   border-bottom: solid 1px #dddddd;
 }
 
 .app-header img {
   max-height: 33px;
+}
+
+.user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user img {
+  max-height: 75px;
+  margin-right: 1em;
 }
 
 .button {
@@ -29,10 +44,6 @@
 .button.selected {
   background-color: #58bfa9;
   color: white;
-}
-
-h2.h6 {
-  font-size: 24px;
 }
 
 .date {
