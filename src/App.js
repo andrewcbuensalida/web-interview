@@ -15,7 +15,7 @@ class App extends Component {
       user: {},
       selectedConsultantType: 'gp',
       availableSlots: [],
-      selectedDateAndTime: null,
+      selectedSlotID: null,
     };
     // this.handleSelectConsultantType = this.handleSelectConsultantType.bind(this);
   }
@@ -66,14 +66,20 @@ class App extends Component {
         slotsByDate[slot.time.slice(0, -14)].push(slot);
       }
     });
-    console.log(`This is slotsByDate`);
-    console.log(slotsByDate);
 
-    //dynamically display cosultant type buttons
+    //dynamically display cosultant type buttons based on slots available
     let consultantTypes = [];
     this.state.availableSlots.forEach((slot) => {
       slot.consultantType.forEach((consultantType) => {
         if (!consultantTypes.includes(consultantType)) consultantTypes.push(consultantType);
+      });
+    });
+
+    //dynamically getting appointment types based on slots matched
+    let appointmentTypes = [];
+    this.state.availableSlots.forEach((slot) => {
+      slot.appointmentType.forEach((appointmentType) => {
+        if (!appointmentTypes.includes(appointmentType)) appointmentTypes.push(appointmentType);
       });
     });
 
@@ -109,15 +115,14 @@ class App extends Component {
             {Object.entries(slotsByDate).map(([date, slots]) => {
               return (
                 <div key={date}>
-
                   <div className="date"> {moment(date).format('MMM D[:]')}</div>
 
                   {slots.map((slot) => (
                     <li
                       key={slot.id}
-                      className="button"
+                      className={`button ${this.state.selectedSlotID === slot.id && 'selected'}`}
                       onClick={() => {
-                        this.setState({ selectedDateAndTime: slot.time });
+                        this.setState({ selectedSlotID: slot.id });
                       }}
                     >
                       {moment(slot.time).format('hh:mm')}
@@ -128,8 +133,22 @@ class App extends Component {
             })}
           </div>
           <div>
+            <h3>Appointment Type</h3>
+            {appointmentTypes.map((appointmentType) => (
+              <div
+              key={appointmentType}
+                className={`button ${
+                  this.state.selectedAppointmentType === appointmentType && 'selected'
+                }`}
+                onClick={(e) => this.setState({ selectedAppointmentType: appointmentType })}
+              >
+                {appointmentType}
+              </div>
+            ))}
+          </div>
+          <div>
             <h3>Notes</h3>
-            <textarea />
+            <textarea placeholder='Describe your symptoms'/>
           </div>
           <div>
             <div
