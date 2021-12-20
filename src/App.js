@@ -46,36 +46,66 @@ class App extends Component {
   }
 
   async handleSubmit() {
-    try {
-      let response = await fetch(`${API_ENDPOINT}/appointments`, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify({
-          notes: this.state.notes,
-          userId: this.state.user.id,
-          consultantType: this.state.selectedConsultantType + ' appointment',
-          appointmentType: this.state.selectedAppointmentType,
-          dateTime: this.state.selectedDateTime,
-        }), // body data type must match "Content-Type" header
-      });
-      console.log(`This is response`);
-      console.log(response);
+    let isError;
+    // could use this method, or have error states which conditionally change display of each error element
+    if (!this.state.user) {
+      isError = true;
+      document.getElementById('generalError').style.display = 'inline';
+      document.getElementById('userError').style.display = 'inline';
+    }
+    if (!this.state.selectedConsultantType) {
+      isError = true;
+      document.getElementById('generalError').style.display = 'inline';
+      document.getElementById('consultantError').style.display = 'inline';
+    }
+    if (!this.state.selectedDateTime) {
+      isError = true;
+      document.getElementById('generalError').style.display = 'inline';
+      document.getElementById('dateTimeError').style.display = 'inline';
+    }
+    if (!this.state.selectedAppointmentType) {
+      isError = true;
+      document.getElementById('generalError').style.display = 'inline';
+      document.getElementById('appointmentError').style.display = 'inline';
+    }
+    if (!isError) {
+      try {
+        let response = await fetch(`${API_ENDPOINT}/appointments`, {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, *cors, same-origin
+          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: 'same-origin', // include, *same-origin, omit
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: 'follow', // manual, *follow, error
+          referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          body: JSON.stringify({
+            notes: this.state.notes,
+            userId: this.state.user.id,
+            consultantType: this.state.selectedConsultantType + ' appointment',
+            appointmentType: this.state.selectedAppointmentType,
+            dateTime: this.state.selectedDateTime,
+          }), // body data type must match "Content-Type" header
+        });
+        console.log(`This is response`);
+        console.log(response);
 
-      this.setState({
-        selectedConsultantType: 'gp',
-        selectedDateTime: '',
-        selectedAppointmentType: '',
-        notes: '',
-      });
-    } catch (err) {}
+        this.setState({
+          selectedConsultantType: 'gp',
+          selectedDateTime: '',
+          selectedAppointmentType: '',
+          notes: '',
+        });
+
+        document.getElementById('generalError').style.display = 'none';
+        document.getElementById('userError').style.display = 'none';
+        document.getElementById('consultantError').style.display = 'none';
+        document.getElementById('dateTimeError').style.display = 'none';
+        document.getElementById('appointmentError').style.display = 'none';
+      } catch (err) {}
+    }
   }
 
   render() {
@@ -127,8 +157,11 @@ class App extends Component {
           <div className="user">
             <img src={this.state.user.avatar} />
             {this.state.user.firstName} {this.state.user.lastName}
+            <span id="userError">Please Log In</span>
           </div>
-          <h3>Consultant Type</h3>
+          <h3>
+            Consultant Type <span id="consultantError">Please select a consultant type</span>
+          </h3>
           {consultantTypes.map((consultantType) => {
             return (
               <div
@@ -147,7 +180,9 @@ class App extends Component {
           })}
 
           <div>
-            <h3>Date and Time</h3>
+            <h3>
+              Date and Time <span id="dateTimeError">Please select a time slot</span>
+            </h3>
             {Object.entries(slotsByDate).map(([date, slots]) => {
               return (
                 <div key={date}>
@@ -174,7 +209,9 @@ class App extends Component {
             })}
           </div>
           <div>
-            <h3>Appointment Type</h3>
+            <h3>
+              Appointment Type <span id="appointmentError">Please select an appointment type</span>
+            </h3>
             {appointmentTypes.map((appointmentType) => (
               <div
                 key={appointmentType}
@@ -202,8 +239,9 @@ class App extends Component {
                 this.handleSubmit();
               }}
             >
-              Book Consultant
+              Book
             </div>
+            <span id="generalError">Please fill missing information</span>
           </div>
         </div>
       </div>

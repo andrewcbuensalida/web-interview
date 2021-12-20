@@ -19,6 +19,12 @@
   }
 }
 
+#userError,#consultantError,#dateTimeError,#appointmentError,#generalError{
+  color: $error;
+  font-size: 1rem;
+  display: none;
+}
+
 .button {
   cursor: pointer;
   box-sizing: border-box;
