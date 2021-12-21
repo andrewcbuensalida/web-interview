@@ -160,29 +160,28 @@ class App extends Component {
             {this.state.user.firstName} {this.state.user.lastName}
             <span id="userError">Please Log In</span>
           </div>
-          <h3>
-            Consultant Type <span id="consultantError">Please select a consultant type</span>
-          </h3>
-          <div className="fade"></div>
+          <div className="fadeContainer">
+            <h3>
+              Consultant Type <span id="consultantError">Please select a consultant type</span>
+            </h3>
+            <div className="fade"></div>
 
-          <ScrollContainer className="optionsContainer">
-            {consultantTypes.map((consultantType) => {
-              return (
-                <div
-                  key={consultantType}
-                  // could add selected className conditionally here based on this.state.selectedConsultantType but there's a delay because it has to wait for availableSlots to fetch, because buttons are dynamic
-                  className={`button ${
-                    this.state.selectedConsultantType === consultantType && 'selected'
-                  }`}
-                  // className="button"
-                  // this is one method. another is binding function in constructor. another is putting setState directly in here.
-                  onClick={(e) => this.handleSelectConsultantType(e)}
-                >
-                  {consultantType}
-                </div>
-              );
-            })}
-          </ScrollContainer>
+            <ScrollContainer className="optionsContainer">
+              {consultantTypes.map((consultantType) => {
+                return (
+                  <div
+                    key={consultantType}
+                    className={`button ${
+                      this.state.selectedConsultantType === consultantType && 'selected'
+                    }`}
+                    onClick={(e) => this.handleSelectConsultantType(e)}
+                  >
+                    {consultantType}
+                  </div>
+                );
+              })}
+            </ScrollContainer>
+          </div>
 
           <div>
             <h3>
@@ -190,7 +189,7 @@ class App extends Component {
             </h3>
             {Object.entries(slotsByDate).map(([date, slots]) => {
               return (
-                <div key={date}>
+                <div key={date} className="fadeContainer">
                   <div className="date"> {moment(date).format('MMM D[:]')}</div>
                   <div className="fade"></div>
 
@@ -216,7 +215,7 @@ class App extends Component {
               );
             })}
           </div>
-          <div>
+          <div className="fadeContainer">
             <h3>
               Appointment Type <span id="appointmentError">Please select an appointment type</span>
             </h3>{' '}
