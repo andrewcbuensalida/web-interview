@@ -1,5 +1,9 @@
 @import './constants.scss';
 
+html {
+    overflow-y: overlay;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -20,6 +24,7 @@ body {
 .user {
   display: flex;
   align-items: center;
+  font-weight: 600;
   img {
     max-height: 75px;
     margin-right: 1em;
@@ -34,6 +39,11 @@ body {
   color: $error;
   font-size: 1rem;
   display: none;
+}
+
+.fa-lg{
+  margin-right: .5em;
+  color:$icon-color
 }
 
 .fadeContainer {
@@ -55,7 +65,7 @@ body {
 .optionsContainer {
   display: flex;
   mix-blend-mode: screen;
-  padding-right: 150px;
+  padding-right: 75px;
 }
 
 .button {
@@ -79,12 +89,27 @@ body {
   }
 }
 
+
 .date {
   margin-bottom: 5px;
 }
 
 textarea {
-  min-width: 90%;
+  width: 100%;
   min-height: 150px;
   border-color: $light-grey;
+  box-sizing: border-box;
+  margin-bottom: 1em;
+  padding:1em
+}
+
+#savedMessage{
+  color: $success;
+}
+
+.book{
+  width: 100%;
+  border-radius: 5px;
+  background-color: $positive;
+  color:white
 }

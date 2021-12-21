@@ -18,6 +18,7 @@ class App extends Component {
       selectedDateTime: '',
       selectedAppointmentType: '',
       notes: '',
+      bookingSaved:false
     };
     // this.handleSelectConsultantType = this.handleSelectConsultantType.bind(this);
   }
@@ -98,6 +99,7 @@ class App extends Component {
           selectedDateTime: '',
           selectedAppointmentType: '',
           notes: '',
+          bookingSaved:true
         });
 
         document.getElementById('generalError').style.display = 'none';
@@ -105,6 +107,7 @@ class App extends Component {
         document.getElementById('consultantError').style.display = 'none';
         document.getElementById('dateTimeError').style.display = 'none';
         document.getElementById('appointmentError').style.display = 'none';
+
       } catch (err) {}
     }
   }
@@ -162,6 +165,7 @@ class App extends Component {
           </div>
           <div className="fadeContainer">
             <h3>
+              <i className="fas fa-stethoscope fa-lg"></i>
               Consultant Type <span id="consultantError">Please select a consultant type</span>
             </h3>
             <div className="fade"></div>
@@ -175,8 +179,11 @@ class App extends Component {
                       this.state.selectedConsultantType === consultantType && 'selected'
                     }`}
                     onClick={(e) => this.handleSelectConsultantType(e)}
+                    tabIndex="0"
                   >
-                    {consultantType}
+                    {consultantType === 'gp'
+                      ? 'GP'
+                      : consultantType.charAt(0).toUpperCase() + consultantType.slice(1)}
                   </div>
                 );
               })}
@@ -185,6 +192,9 @@ class App extends Component {
 
           <div>
             <h3>
+              <span>
+                <i className="far fa-clock fa-lg"></i>
+              </span>
               Date and Time <span id="dateTimeError">Please select a time slot</span>
             </h3>
             {Object.entries(slotsByDate).map(([date, slots]) => {
@@ -217,6 +227,9 @@ class App extends Component {
           </div>
           <div className="fadeContainer">
             <h3>
+              <span>
+                <i className="fas fa-video fa-lg"></i>
+              </span>
               Appointment Type <span id="appointmentError">Please select an appointment type</span>
             </h3>{' '}
             <div className="fade"></div>
@@ -229,13 +242,18 @@ class App extends Component {
                   }`}
                   onClick={(e) => this.setState({ selectedAppointmentType: appointmentType })}
                 >
-                  {appointmentType}
+                  {appointmentType.charAt(0).toUpperCase() + appointmentType.slice(1)}
                 </div>
               ))}{' '}
             </ScrollContainer>
           </div>
           <div>
-            <h3>Notes</h3>
+            <h3>
+              <span>
+                <i className="fas fa-pencil-alt fa-lg"></i>
+              </span>
+              Notes
+            </h3>
             <textarea
               placeholder="Describe your symptoms"
               value={this.state.notes}
@@ -244,7 +262,7 @@ class App extends Component {
           </div>
           <div>
             <div
-              className="button"
+              className="button book"
               onClick={() => {
                 this.handleSubmit();
               }}
@@ -252,6 +270,7 @@ class App extends Component {
               Book
             </div>
             <span id="generalError">Please fill missing information</span>
+            {this.state.bookingSaved && <span id="savedMessage">Booking saved!</span>}
           </div>
         </div>
       </div>

@@ -1,3 +1,7 @@
+html {
+  overflow-y: overlay;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -19,6 +23,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-weight: 600;
 }
 
 .user img {
@@ -34,6 +39,11 @@ body {
   color: #ff4743;
   font-size: 1rem;
   display: none;
+}
+
+.fa-lg {
+  margin-right: .5em;
+  color: #4a4a4a;
 }
 
 .fadeContainer {
@@ -55,7 +65,7 @@ body {
   display: -ms-flexbox;
   display: flex;
   mix-blend-mode: screen;
-  padding-right: 150px;
+  padding-right: 75px;
 }
 
 .button {
@@ -86,8 +96,23 @@ body {
 }
 
 textarea {
-  min-width: 90%;
+  width: 100%;
   min-height: 150px;
   border-color: #dfdfdf;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+#savedMessage {
+  color: #63dbc1;
+}
+
+.book {
+  width: 100%;
+  border-radius: 5px;
+  background-color: #58bfa9;
+  color: white;
 }
 /*# sourceMappingURL=App.css.map */
