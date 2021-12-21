@@ -322,6 +322,14 @@
       "appointmentType": "audio",
       "dateTime": "2019-08-30T19:21:30.000Z",
       "id": 16
+    },
+    {
+      "notes": "Coolness overload",
+      "userId": 1,
+      "consultantType": "gp appointment",
+      "appointmentType": "audio",
+      "dateTime": "2019-09-30T19:23:30.000Z",
+      "id": 17
     }
   ]
 }
