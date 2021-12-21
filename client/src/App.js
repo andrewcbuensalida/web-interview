@@ -18,7 +18,7 @@ class App extends Component {
       selectedDateTime: '',
       selectedAppointmentType: '',
       notes: '',
-      bookingSaved:false
+      bookingSaved: false,
     };
     // this.handleSelectConsultantType = this.handleSelectConsultantType.bind(this);
   }
@@ -27,9 +27,9 @@ class App extends Component {
     fetch(`${API_ENDPOINT}/availableSlots`)
       .then((res) => res.json())
       .then((json) => {
-        console.log(`This is json`)
-        console.log(json)
-        
+        console.log(`This is json`);
+        console.log(json);
+
         this.setState({ availableSlots: json });
       })
       .catch(() => {
@@ -55,37 +55,35 @@ class App extends Component {
     // could use this method, or have error states which conditionally change display of each error element
     if (!this.state.user) {
       isError = true;
-      document.getElementById('generalError').style.display = 'inline';
       document.getElementById('userError').style.display = 'inline';
     }
     if (!this.state.selectedConsultantType) {
       isError = true;
-      document.getElementById('generalError').style.display = 'inline';
       document.getElementById('consultantError').style.display = 'inline';
     }
     if (!this.state.selectedDateTime) {
       isError = true;
-      document.getElementById('generalError').style.display = 'inline';
       document.getElementById('dateTimeError').style.display = 'inline';
     }
     if (!this.state.selectedAppointmentType) {
       isError = true;
-      document.getElementById('generalError').style.display = 'inline';
       document.getElementById('appointmentError').style.display = 'inline';
+    }
+    if (isError) {
+      document.getElementById('generalError').style.display = 'inline';
     }
     if (!isError) {
       try {
-        let response = await fetch(`${API_ENDPOINT}/appointments`, {
-          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        let responseJSON = await fetch(`${API_ENDPOINT}/appointments`, {
+          method: 'POST', // *GET, POST, PUT, DELETE, 
           mode: 'cors', // no-cors, *cors, same-origin
-          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-          credentials: 'same-origin', // include, *same-origin, omit
+          cache: 'no-cache', 
+          credentials: 'same-origin', 
           headers: {
             'Content-Type': 'application/json',
-            // 'Content-Type': 'application/x-www-form-urlencoded',
           },
-          redirect: 'follow', // manual, *follow, error
-          referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer', 
           body: JSON.stringify({
             notes: this.state.notes,
             userId: this.state.user.id,
@@ -94,6 +92,7 @@ class App extends Component {
             dateTime: this.state.selectedDateTime,
           }), // body data type must match "Content-Type" header
         });
+        let response = await responseJSON.json();
         console.log(`This is response`);
         console.log(response);
 
@@ -102,7 +101,7 @@ class App extends Component {
           selectedDateTime: '',
           selectedAppointmentType: '',
           notes: '',
-          bookingSaved:true
+          bookingSaved: true,
         });
 
         document.getElementById('generalError').style.display = 'none';
@@ -110,8 +109,11 @@ class App extends Component {
         document.getElementById('consultantError').style.display = 'none';
         document.getElementById('dateTimeError').style.display = 'none';
         document.getElementById('appointmentError').style.display = 'none';
+      } catch (err) {
 
-      } catch (err) {}
+        console.log(`This is err`);
+        console.log(err);
+      }
     }
   }
 
