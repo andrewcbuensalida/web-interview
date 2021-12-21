@@ -27,6 +27,9 @@ class App extends Component {
     fetch(`${API_ENDPOINT}/availableSlots`)
       .then((res) => res.json())
       .then((json) => {
+        console.log(`This is json`)
+        console.log(json)
+        
         this.setState({ availableSlots: json });
       })
       .catch(() => {
