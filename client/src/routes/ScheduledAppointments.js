@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { Component } from 'react'
+import './ScheduledAppointments.scss';
 
-function ScheduledAppointments() {
-    return (
-        <div>
+export class ScheduledAppointments extends Component {
+    render() {
+        return (
+          <>
             <h1>Scheduled Appointments</h1>
-        </div>
-    )
+          </>
+        );
+    }
 }
 
 export default ScheduledAppointments

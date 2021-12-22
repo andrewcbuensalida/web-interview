@@ -6,37 +6,30 @@
     "build": "react-scripts build",
     "precommit": "lint-staged",
     "server": "yarn json-server --watch ./data/data.json --port 3010",
-    "start": "yarn server & react-scripts start",
+    "start": "npx react-scripts start",
     "test": "react-scripts test --env=jsdom"
   },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "eslint --quiet",
-      "git add"
-    ]
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "resolutions": {
-    "immer": "^8.0.1"
-  },
   "dependencies": {
-    "json-server": "^0.16.3",
     "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-indiana-drag-scroll": "^2.1.0"
+    "react-indiana-drag-scroll": "^2.1.0",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "^4.0.1"
   },
   "devDependencies": {
-    "husky": "^4.3.8",
-    "lint-staged": "^10.5.3",
-    "prettier": "^2.2.1",
-    "prettier-plugin-packagejson": "^2.2.9",
-    "react-scripts": "^4.0.1"
+    "sass": "^1.45.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
