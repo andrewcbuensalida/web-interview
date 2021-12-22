@@ -148,7 +148,7 @@ class App extends Component {
       });
     });
 
-    //dynamically getting appointment types based on slots matched
+    //dynamically getting appointment types based on slots matched. probably should be based on dateTime selected
     let appointmentTypes = [];
     this.state.availableSlots.forEach((slot) => {
       slot.appointmentType.forEach((appointmentType) => {

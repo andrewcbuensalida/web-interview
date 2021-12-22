@@ -13,3 +13,6 @@ then because different versions use different encryption, to allow node to login
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '<password>'
 
 now trying to post an appointment and iso 8601 dateTime from front end is not compatible with mysqls datetime. 
+just saved iso 8601 to a string in mysql.
+
+no capitalized letters allowed in mysql tables
