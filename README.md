@@ -85,4 +85,4 @@ just realized i've been calling it appointments instead of availableSlots, but s
 
 what worked is in workbench, right click available slots table, import wizard, then import the available slots json.
 
-workflow is yarn build on client when done developing, then push to github, nodemon index.js when developing
+now deploying to aws
