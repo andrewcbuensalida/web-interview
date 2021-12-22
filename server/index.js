@@ -16,6 +16,8 @@ const db = mysql.createPool({
 });
 
 app.get("/api/v1/availableSlots", (req, res) => {
+	
+	
 	const sqlInsert = `SELECT * FROM availableslots`;
 	db.query(sqlInsert, (err, result) => {
 		if (err) return res.status(404).json(err);

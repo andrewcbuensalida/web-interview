@@ -94,7 +94,11 @@ listen 80;
 server_name babylon.anhonestobserver.com www.babylon.anhonestobserver.com;
 
 location / {
-proxy_pass http://localhost:3400/;
+try_files $uri /index.html;
+}
+
+location /api/v1 {
+proxy_pass http://localhost:3400/api/v1;
 proxy_http_version 1.1;
 proxy_set_header Upgrade $http_upgrade;
 proxy_set_header Connection 'upgrade';
@@ -127,7 +131,6 @@ ss -tnlp | grep "node /"
 to check logs,
 pm2 logs flex --timestamp
 
-
 =============================================================
 installing mysql on ubuntu
 https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04
@@ -139,16 +142,16 @@ sudo mysql
 create a data dump file on local workbench > server menu > export > refresh > select schema (babylon) > export to self contained file > include create schema
 
 then to import data
-in ubuntu, 
+in ubuntu,
 sudo mysql -u root -p
 CREATE DATABASE babylon;
 press ctrl + D
 sudo mysql -u root -p babylon < seed.sql
 
 gets an error
-ERROR 1064 (42000) at line 1: You have an error in your SQL syntax; check the manual 
+ERROR 1064 (42000) at line 1: You have an error in your SQL syntax; check the manual
 that corresponds to your MySQL server version for the right syntax to use near 'NOT E
-XISTS `babylon` /*!40100 DEFAULT CHARACTER SET 
+XISTS `babylon` /\*!40100 DEFAULT CHARACTER SET
 
 just paste in notepad or search bar, then repaste into seed.sql in ubuntu.
 now log back in
@@ -162,6 +165,38 @@ now trying to export via mysqlsh
 download zip from https://dev.mysql.com/downloads/mysql/
 copy mysqldump.exe
 go to that folder in cmd
-mysqldump -u root -p babylon > seed.sql
+mysqldump -u root -p babylon > seleseseed.sql
 
 still empty set.
+
+turns out, i had to use the original exported dump file sql, not just copy the contents of it.
+
+
+=====================================================================================================
+now getting this error when manually inputting url of api
+{
+code: "ER_NOT_SUPPORTED_AUTH_MODE",
+errno: 1251,
+sqlMessage: "Client does not support authentication protocol requested by server; consider upgrading MySQL client",
+sqlState: "08004",
+fatal: true
+}
+
+so try this
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
+
+now it's working
+
+======================================================================================
+since aws is getting expensive, so workflow is 
+npx react-scripts start
+and 
+nodemon index.js
+when developing, when finished,
+yarn build
+, then push to gh, then on ubuntu git pull. 
+pm2 should auto restart due to changes.
+
+
+==========================================
+now adding react router
