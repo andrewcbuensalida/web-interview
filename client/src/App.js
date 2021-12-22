@@ -156,18 +156,18 @@ class App extends Component {
         <div style={{ maxWidth: 600, margin: '8px auto', padding: '0 1em' }}>
           <div className="app-header">
             <div className="navContainer">
-              <div className="navBlock">
-              </div>
-                <ul id="nav2">
-                  <div className="icon">
-                    <i className="fa fa-2x fa-chevron-right"></i>
-                  </div>
-                  <Link to="/scheduled">
-                    <li className="scheduledNav">Scheduled appointments</li>
-                  </Link>
-
+              <div className="navBlock"></div>
+              <ul id="nav2">
+                <div className="icon">
+                  <i className="fa fa-2x fa-chevron-right"></i>
+                </div>
+                <Link to="/scheduledappointments">
+                  <li className="scheduledNav">Scheduled appointments</li>
+                </Link>
+                <Link to="/createappointment">
                   <li className="createNav">Create an appointment</li>
-                </ul>
+                </Link>
+              </ul>
             </div>
             <img src={logo} className="app-logo" alt="Babylon Health" />
           </div>
