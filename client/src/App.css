@@ -13,8 +13,22 @@ body {
   border-bottom: solid 1px #dddddd;
 }
 
-.app-header #nav2 {
+.app-header .navContainer {
+  width: 100%;
   position: absolute;
+}
+
+.app-header .navContainer .navBlock {
+  position: absolute;
+  z-index: 1;
+  right: 100%;
+  top: 0;
+  height: 100%;
+  width: 2000px;
+  background-color: white;
+}
+
+.app-header .navContainer #nav2 {
   background: white;
   width: 100%;
   padding-left: 0;
@@ -26,21 +40,21 @@ body {
   transform: translatex(-100%);
 }
 
-.app-header #nav2 .icon {
+.app-header .navContainer #nav2 .icon {
   position: absolute;
   right: -30px;
   background: white;
-  padding: 0 .5em;
+  padding: 0 0.5em;
   color: #58bfa9;
 }
 
-.app-header #nav2 .icon .fa {
+.app-header .navContainer #nav2 .icon .fa {
   font-size: 2rem;
   -webkit-transition: all 0.6s;
   transition: all 0.6s;
 }
 
-.app-header #nav2 li {
+.app-header .navContainer #nav2 li {
   list-style-type: none;
   padding: 1em;
   text-transform: uppercase;
@@ -50,27 +64,18 @@ body {
   transition: all 0.6s;
 }
 
-.app-header #nav2 li:hover {
+.app-header .navContainer #nav2 li:hover {
   background-color: #f9f9f9;
 }
 
-.app-header #nav2:hover {
+.app-header .navContainer #nav2:hover {
   -webkit-transform: translatex(0);
   transform: translatex(0);
 }
 
-.app-header #nav2:hover .icon .fa {
+.app-header .navContainer #nav2:hover .icon .fa {
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
-}
-
-.app-header #nav2::after {
-  content: '';
-  position: absolute;
-  right: 100%;
-  top: 0;
-  height: 100%;
-  width: 100%;
 }
 
 .app-header img {

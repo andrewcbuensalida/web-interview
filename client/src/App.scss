@@ -16,75 +16,62 @@ body {
   padding: $gutter-size--large 0;
   text-align: center;
   position: relative;
-  #nav2 {
-    position: absolute;
-    background: white;
+  .navContainer {
     width: 100%;
-    // padding-bottom: 1.75em;
-    padding-left: 0;
-    font-size: 1.2rem;
-    margin: 0 auto;
-    -webkit-transition: all 0.6s;
-    transition: all 0.6s;
-    -webkit-transform: translatex(-100%);
-    transform: translatex(-100%);
-    .icon {
+    position: absolute;
+    .navBlock {
       position: absolute;
-      right: -30px;
-      background: rgb(255, 255, 255);
-      padding: 0 .5em;
-      color: $positive;
-      .fa {
-        font-size: 2rem;
-        -webkit-transition: all 0.6s;
-        transition: all 0.6s;
-      }
-    }
-    li {
-      list-style-type: none;
-      padding: 1em;
-      text-transform: uppercase;
-      text-align: left;
-      cursor: pointer;
-      transition: all 0.6s;
-      &:hover {
-        background-color: $hover-grey;
-      }
-    }
-    &:hover {
-      .icon .fa {
-        -webkit-transform: rotate(180deg);
-        transform: rotate(180deg);
-      }
-      -webkit-transform: translatex(0);
-      transform: translatex(0);
-    }
-    &::after {
-      content: '';
-      position: absolute;
+      z-index: 1;
       right: 100%;
       top: 0;
       height: 100%;
+      width: 2000px;
+      background-color: white;
+    }
+    #nav2 {
+      background: white;
       width: 100%;
+      padding-left: 0;
+      font-size: 1.2rem;
+      margin: 0 auto;
+      -webkit-transition: all 0.6s;
+      transition: all 0.6s;
+      -webkit-transform: translatex(-100%);
+      transform: translatex(-100%);
+      .icon {
+        position: absolute;
+        right: -30px;
+        background: rgb(255, 255, 255);
+        padding: 0 0.5em;
+        color: $positive;
+        .fa {
+          font-size: 2rem;
+          -webkit-transition: all 0.6s;
+          transition: all 0.6s;
+        }
+      }
+      li {
+        list-style-type: none;
+        padding: 1em;
+        text-transform: uppercase;
+        text-align: left;
+        cursor: pointer;
+        transition: all 0.6s;
+        &:hover {
+          background-color: $hover-grey;
+        }
+      }
+      &:hover {
+        .icon .fa {
+          -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+        }
+        -webkit-transform: translatex(0);
+        transform: translatex(0);
+      }
     }
   }
-  // #nav2 {
-  //   border-right: none;
-  //   font-family: 'Raleway', sans-serif;
-  //   .icon {
-  //     background: rgb(255, 255, 255);
-  //     padding: 0px 10px 10px 0px;
-  //   }
-  //   .icon .fa {
-  //     color: $positive;
-  //   }
-  //   &:hover {
-  //     .icon .fa {
-  //       -webkit-transform: rotate(180deg);
-  //       transform: rotate(180deg);
-  //     }
-  //   }
-  // }
+
   img {
     max-height: 33px;
   }
