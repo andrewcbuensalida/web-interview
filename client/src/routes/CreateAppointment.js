@@ -149,7 +149,7 @@ class CreateAppointment extends Component {
     });
 
     return (
-      <>
+      <main>
         <h1>Create Appointment</h1>
         <div className="user">
           <img src={this.state.user.avatar} />
@@ -265,7 +265,7 @@ class CreateAppointment extends Component {
           <span id="generalError">Please fill missing information</span>
           {this.state.bookingSaved && <span id="savedMessage">Booking saved!</span>}
         </div>
-      </>
+      </main>
     );
   }
 }

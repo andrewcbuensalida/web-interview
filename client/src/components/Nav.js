@@ -5,7 +5,7 @@ import './Nav.scss'
 
 function Nav() {
   return (
-    <div className="navContainer">
+    <nav className="navContainer">
       <div className="navBlock"></div>
       <ul id="nav2">
         <div className="icon">
@@ -18,7 +18,7 @@ function Nav() {
           <li className="createNav">Create an appointment</li>
         </Link>
       </ul>
-    </div>
+    </nav>
   );
 }
 

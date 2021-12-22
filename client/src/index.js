@@ -13,6 +13,14 @@ render(
         <Route path="/" element={<App />}>
           <Route path="createappointment" element={<CreateAppointment />} />
           <Route path="scheduledappointments" element={<ScheduledAppointments />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: '1rem' }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          ></Route>
         </Route>
       </Routes>
     </BrowserRouter>
