@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import { Link } from 'react-router-dom';
 
 import logo from './logo.png';
 import { API_ENDPOINT } from './config';
 
 import './App.scss';
-import { node } from 'prop-types';
 
 class App extends Component {
   constructor(props) {
@@ -68,7 +68,7 @@ class App extends Component {
     }
     if (isError) {
       document.getElementById('generalError').style.display = 'inline';
-      this.setState({bookingSaved:false})
+      this.setState({ bookingSaved: false });
     }
     if (!isError) {
       try {
@@ -153,8 +153,15 @@ class App extends Component {
 
     return (
       <div className="app">
-        <div style={{ maxWidth: 600, margin: '24px auto', padding: '0 1em' }}>
+        <div style={{ maxWidth: 600, margin: '8px auto', padding: '0 1em' }}>
           <div className="app-header">
+            <ul id="nav2">
+              <div className="icon">
+                <i className="fa fa-2x fa-chevron-right"></i>
+              </div>
+              <li className="scheduleNav">Scheduled appointments</li>
+              <li className="createNav">Create an appointment</li>
+            </ul>
             <img src={logo} className="app-logo" alt="Babylon Health" />
           </div>
           <h1>New Appointment</h1>

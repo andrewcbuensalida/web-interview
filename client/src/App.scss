@@ -1,7 +1,7 @@
 @import './constants.scss';
 
 html {
-    overflow-y: overlay;
+  overflow-y: overlay;
 }
 
 body {
@@ -13,8 +13,78 @@ body {
 // }
 
 .app-header {
-  padding: $gutter-size--large;
+  padding: $gutter-size--large 0;
   text-align: center;
+  position: relative;
+  #nav2 {
+    position: absolute;
+    background: white;
+    width: 100%;
+    // padding-bottom: 1.75em;
+    padding-left: 0;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    -webkit-transition: all 0.6s;
+    transition: all 0.6s;
+    -webkit-transform: translatex(-100%);
+    transform: translatex(-100%);
+    .icon {
+      position: absolute;
+      right: -30px;
+      background: rgb(255, 255, 255);
+      padding: 0 .5em;
+      color: $positive;
+      .fa {
+        font-size: 2rem;
+        -webkit-transition: all 0.6s;
+        transition: all 0.6s;
+      }
+    }
+    li {
+      list-style-type: none;
+      padding: 1em;
+      text-transform: uppercase;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.6s;
+      &:hover {
+        background-color: $hover-grey;
+      }
+    }
+    &:hover {
+      .icon .fa {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
+      -webkit-transform: translatex(0);
+      transform: translatex(0);
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      right: 100%;
+      top: 0;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  // #nav2 {
+  //   border-right: none;
+  //   font-family: 'Raleway', sans-serif;
+  //   .icon {
+  //     background: rgb(255, 255, 255);
+  //     padding: 0px 10px 10px 0px;
+  //   }
+  //   .icon .fa {
+  //     color: $positive;
+  //   }
+  //   &:hover {
+  //     .icon .fa {
+  //       -webkit-transform: rotate(180deg);
+  //       transform: rotate(180deg);
+  //     }
+  //   }
+  // }
   img {
     max-height: 33px;
   }
@@ -41,9 +111,9 @@ body {
   display: none;
 }
 
-.fa-lg{
-  margin-right: .5em;
-  color:$icon-color
+.fa-lg {
+  margin-right: 0.5em;
+  color: $icon-color;
 }
 
 .fadeContainer {
@@ -89,7 +159,6 @@ body {
   }
 }
 
-
 .date {
   margin-bottom: 5px;
 }
@@ -100,16 +169,16 @@ textarea {
   border-color: $light-grey;
   box-sizing: border-box;
   margin-bottom: 1em;
-  padding:1em
+  padding: 1em;
 }
 
-#savedMessage{
+#savedMessage {
   color: $success;
 }
 
-.book{
+.book {
   width: 100%;
   border-radius: 5px;
   background-color: $positive;
-  color:white
+  color: white;
 }
