@@ -68,6 +68,7 @@ class App extends Component {
     }
     if (isError) {
       document.getElementById('generalError').style.display = 'inline';
+      this.setState({bookingSaved:false})
     }
     if (!isError) {
       try {
