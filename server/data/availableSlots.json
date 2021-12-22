@@ -1,0 +1,104 @@
+[
+	{
+		"id": 1,
+		"consultantType": ["gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-11-16T16:17:30.000Z"
+	},
+	{
+		"id": 2,
+		"consultantType": ["therapist", "gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-11-16T16:18:30.000Z"
+	},
+	{
+		"id": 3,
+		"consultantType": ["gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-11-16T16:17:30.000Z"
+	},
+	{
+		"id": 4,
+		"consultantType": ["therapist", "gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-11-16T16:18:30.000Z"
+	},
+	{
+		"id": 5,
+		"consultantType": ["specialist"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-12-26T17:19:00.000Z"
+	},
+	{
+		"id": 6,
+		"consultantType": ["gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-09-23T18:20:00.000Z"
+	},
+	{
+		"id": 7,
+		"consultantType": ["gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-08-30T19:21:30.000Z"
+	},
+	{
+		"id": 8,
+		"consultantType": ["gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-08-30T19:21:30.000Z"
+	},
+	{
+		"id": 9,
+		"consultantType": ["gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-08-30T19:21:30.000Z"
+	},
+	{
+		"id": 10,
+		"consultantType": ["gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-08-30T19:21:30.000Z"
+	},
+	{
+		"id": 11,
+		"consultantType": ["gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-08-30T19:21:30.000Z"
+	},
+	{
+		"id": 12,
+		"consultantType": ["gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-09-30T19:21:30.000Z"
+	},
+	{
+		"id": 13,
+		"consultantType": ["gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-09-30T19:22:30.000Z"
+	},
+	{
+		"id": 14,
+		"consultantType": ["gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-09-30T19:23:30.000Z"
+	},
+	{
+		"id": 15,
+		"consultantType": ["gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-09-30T19:24:30.000Z"
+	},
+	{
+		"id": 16,
+		"consultantType": ["gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-09-30T19:25:30.000Z"
+	},
+	{
+		"id": 17,
+		"consultantType": ["gp"],
+		"appointmentType": ["audio", "video"],
+		"time": "2019-09-30T19:26:30.000Z"
+	}
+]

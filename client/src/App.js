@@ -27,9 +27,6 @@ class App extends Component {
     fetch(`${API_ENDPOINT}/availableSlots`)
       .then((res) => res.json())
       .then((json) => {
-        console.log(`This is json`);
-        console.log(json);
-
         this.setState({ availableSlots: json });
       })
       .catch(() => {
@@ -75,15 +72,15 @@ class App extends Component {
     if (!isError) {
       try {
         let responseJSON = await fetch(`${API_ENDPOINT}/appointments`, {
-          method: 'POST', // *GET, POST, PUT, DELETE, 
+          method: 'POST', // *GET, POST, PUT, DELETE,
           mode: 'cors', // no-cors, *cors, same-origin
-          cache: 'no-cache', 
-          credentials: 'same-origin', 
+          cache: 'no-cache',
+          credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/json',
           },
           redirect: 'follow',
-          referrerPolicy: 'no-referrer', 
+          referrerPolicy: 'no-referrer',
           body: JSON.stringify({
             notes: this.state.notes,
             userId: this.state.user.id,
@@ -93,8 +90,6 @@ class App extends Component {
           }), // body data type must match "Content-Type" header
         });
         let response = await responseJSON.json();
-        console.log(`This is response`);
-        console.log(response);
 
         this.setState({
           selectedConsultantType: 'gp',
@@ -110,7 +105,6 @@ class App extends Component {
         document.getElementById('dateTimeError').style.display = 'none';
         document.getElementById('appointmentError').style.display = 'none';
       } catch (err) {
-
         console.log(`This is err`);
         console.log(err);
       }
