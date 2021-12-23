@@ -189,11 +189,12 @@ now it's working
 
 ======================================================================================
 since aws is getting expensive, so workflow is 
-npx react-scripts start
-and 
+in client
+npm start
+and in server
 nodemon index.js
 when developing, when finished,
-yarn build
+npm run build
 , then push to gh, then on ubuntu git pull. 
 pm2 should auto restart due to changes.
 
