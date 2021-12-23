@@ -12,7 +12,7 @@
       width: 2000px;
       background-color: white;
     }
-    #nav2 {
+    .nav2 {
       background: white;
       width: 100%;
       padding-left: 0;
@@ -23,11 +23,13 @@
       -webkit-transform: translatex(-100%);
       transform: translatex(-100%);
       .icon {
+        box-sizing: border-box;
         position: absolute;
-        right: -30px;
+        left: 100%;
         background: rgb(255, 255, 255);
         padding: 0 0.5em;
         color: $positive;
+        cursor: pointer;
         .fa {
           font-size: 2rem;
           -webkit-transition: all 0.6s;
@@ -49,7 +51,7 @@
           }
         }
       }
-      &:hover {
+      &.opened {
         .icon .fa {
           -webkit-transform: rotate(180deg);
           transform: rotate(180deg);

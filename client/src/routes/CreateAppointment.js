@@ -90,7 +90,6 @@ class CreateAppointment extends Component {
         let response = await responseJSON.json();
 
         this.setState({
-          selectedConsultantType: 'gp',
           selectedDateTime: '',
           selectedAppointmentType: '',
           notes: '',
