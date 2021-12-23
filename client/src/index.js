@@ -7,7 +7,6 @@ import CreateAppointment from './routes/CreateAppointment';
 import ScheduledAppointments from './routes/ScheduledAppointments';
 
 render(
-  <div style={{ maxWidth: 600, margin: '8px auto', padding: '0 1em' }}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
@@ -24,7 +23,7 @@ render(
         </Route>
       </Routes>
     </BrowserRouter>
-  </div>,
+  ,
 
   document.getElementById('root'),
 );

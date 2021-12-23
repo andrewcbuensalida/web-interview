@@ -16,29 +16,33 @@ const db = mysql.createPool({
 });
 
 app.get("/api/v1/availableSlots", (req, res) => {
-	
-	
 	const sqlInsert = `SELECT * FROM availableslots`;
 	db.query(sqlInsert, (err, result) => {
 		if (err) return res.status(404).json(err);
 		result.forEach(slot => {
 			slot.appointmentType = JSON.parse(slot.appointmentType)
 			slot.consultantType = JSON.parse(slot.consultantType)
-			
 		});
 		res.status(200).json(result);
 	});
-
 });
 
 app.get("/api/v1/users/:id", (req, res) => {
 	const sqlInsert = `SELECT * FROM users WHERE id=?`;
 	db.query(sqlInsert, [req.params.id], (err, result) => {
 		if (err) return res.status(404).json(err);
-
 		res.status(200).json(result[0]);
 	});
 });
+
+app.get('/api/v1/appointments',(req,res)=>{
+	console.log(`hit`)
+	db.query(`SELECT * FROM appointments WHERE userId=? ORDER BY dateTime`,[1],(err,result)=>{
+		
+		res.status(200).json(result)
+	})
+	
+})
 
 app.post("/api/v1/appointments", (req, res) => {
 	// if i want the iso 8601 date from front end to be converted to mysql datetime, use this
