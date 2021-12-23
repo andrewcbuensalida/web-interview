@@ -1,63 +1,68 @@
 @import '../constants.scss';
 
 .navContainer {
-    width: 100%;
+  width: 100%;
+  position: absolute;
+  .navBlock {
     position: absolute;
-    .navBlock {
+    z-index: 1;
+    right: 100%;
+    top: 0;
+    height: 100%;
+    width: 2000px;
+    background-color: white;
+  }
+  .nav2 {
+    background: white;
+    width: 100%;
+    padding-left: 0;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    -webkit-transition: all 0.6s;
+    transition: all 0.6s;
+    -webkit-transform: translatex(-100%);
+    transform: translatex(-100%);
+    .icon {
       position: absolute;
-      z-index: 1;
-      right: 100%;
-      top: 0;
-      height: 100%;
-      width: 2000px;
-      background-color: white;
+      left: 100%;
+      background: rgba(255, 255, 255, 0);
+      padding: 0 0.5em;
+      color: $positive;
+      cursor: pointer;
+      .fa {
+        font-size: 2rem;
+        -webkit-transition: all 0.6s;
+        transition: all 0.6s;
+      }
     }
-    .nav2 {
-      background: white;
-      width: 100%;
-      padding-left: 0;
-      font-size: 1.2rem;
-      margin: 0 auto;
-      -webkit-transition: all 0.6s;
-      transition: all 0.6s;
-      -webkit-transform: translatex(-100%);
-      transform: translatex(-100%);
-      .icon {
-        box-sizing: border-box;
-        position: absolute;
-        left: 100%;
-        background: rgb(255, 255, 255);
-        padding: 0 0.5em;
-        color: $positive;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      li {
+        list-style-type: none;
+        padding: 1em;
+        text-transform: uppercase;
+        text-align: left;
         cursor: pointer;
-        .fa {
-          font-size: 2rem;
-          -webkit-transition: all 0.6s;
-          transition: all 0.6s;
+        transition: all 0.6s;
+        &:hover {
+          background-color: $hover-grey;
         }
       }
-      a{
-        color: inherit;
-        text-decoration: none;
-        li {
-          list-style-type: none;
-          padding: 1em;
-          text-transform: uppercase;
-          text-align: left;
-          cursor: pointer;
-          transition: all 0.6s;
-          &:hover {
-            background-color: $hover-grey;
-          }
-        }
+    }
+    &.opened {
+      .icon .fa {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
       }
-      &.opened {
-        .icon .fa {
-          -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
+      -webkit-transform: translatex(0);
+      transform: translatex(0);
+      @media (max-width: 800px) {
+        .icon {
+          left: 90%;
         }
-        -webkit-transform: translatex(0);
-        transform: translatex(0);
       }
     }
   }
+}

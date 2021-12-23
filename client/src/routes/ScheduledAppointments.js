@@ -56,7 +56,8 @@ export class ScheduledAppointments extends Component {
             Appointment type:{appointment.appointmentType}
             <br />
             Notes: {appointment.notes}
-            <button className="cancel" onClick={() => this.handleCancel(appointment.id)}>
+            <br />
+            <button className="Scheduled__cancel" onClick={() => this.handleCancel(appointment.id)}>
               Cancel
             </button>
           </div>
