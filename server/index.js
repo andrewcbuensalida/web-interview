@@ -16,6 +16,8 @@ const db = mysql.createPool({
 });
 
 app.get("/api/v1/availableSlots", (req, res) => {
+	console.log(`getting available slots`);
+
 	const sqlInsert = `SELECT * FROM availableslots`;
 	db.query(sqlInsert, (err, result) => {
 		if (err) return res.status(404).json(err);
@@ -28,6 +30,8 @@ app.get("/api/v1/availableSlots", (req, res) => {
 });
 
 app.get("/api/v1/users/:id", (req, res) => {
+	console.log(`getting users`);
+
 	const sqlInsert = `SELECT * FROM users WHERE id=?`;
 	db.query(sqlInsert, [req.params.id], (err, result) => {
 		if (err) return res.status(404).json(err);
@@ -36,7 +40,7 @@ app.get("/api/v1/users/:id", (req, res) => {
 });
 
 app.get("/api/v1/appointments", (req, res) => {
-	console.log(`hit`);
+	console.log(`getting appointments`);
 	db.query(
 		`SELECT * FROM appointments WHERE userId=? ORDER BY dateTime`,
 		[1],
@@ -47,6 +51,8 @@ app.get("/api/v1/appointments", (req, res) => {
 });
 
 app.post("/api/v1/appointments", (req, res) => {
+	console.log(`creating appointment`);
+
 	// if i want the iso 8601 date from front end to be converted to mysql datetime, use this
 	// const sqlInsert = `INSERT INTO appointments (notes,userId,consultantType,appointmentType,dateTime) VALUES (?,?,?,?,STR_TO_DATE(?,'%Y-%m-%dT%T.%fZ'))`;
 	const sqlInsert = `INSERT INTO appointments (notes,userId,consultantType,appointmentType,dateTime) VALUES (?,?,?,?,?)`;
@@ -67,6 +73,8 @@ app.post("/api/v1/appointments", (req, res) => {
 });
 
 app.delete("/api/v1/appointments", (req, res) => {
+	console.log(`deleting appointment`);
+
 	const sqlInsert = "DELETE FROM appointments WHERE id=?";
 	db.query(sqlInsert, [req.body.appointmentId], (err, result) => {
 		if (err) throw err;
